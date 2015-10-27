@@ -1,0 +1,64 @@
+#!/bin/bash
+
+local_git_server=$(cat local.ip)
+project_list=$(project.list)
+dir_base=$(pwd)/..
+
+dir_project() {
+	local name="$1"
+
+	echo ${dir_base}/${name}
+}
+
+do_pull() {
+	local name="$1"
+
+	if [[ ! -d "${name}" ]]; then
+		pushd ${dir_base} &> /dev/null
+		git clone git@${local_git_server}:${name}.git
+		popd &> /dev/null
+		echo "clone ${name}.git"
+
+		pushd $(dir_project ${name}) &> /dev/null
+		git remote add github https://tcdog001:zhonggong4SB@github.com/tcdog001/${name}
+		popd &> /dev/null
+		echo "add github ${name}.git"
+	else
+		pushd $(dir_project ${name}) &> /dev/null
+		git pull
+		popd &> /dev/null
+	fi
+}
+
+get_branchs() {
+	git branch -a | grep remote | grep -v github | grep -v HEAD | awk -F '/' '{print $3}'
+}
+
+get_now_branch() {
+	git branch | grep '*' | awk '{print $2}'
+}
+
+do_push() {
+	local name="$1"
+	local now branch branchs
+
+	pushd $(dir_project ${name}) &> /dev/null
+	now=$(get_now_branch)
+	branchs=$(get_branchs)
+	for branch in ${branchs}; do
+		git checkout ${branch}
+		git push github ${branch}
+		echo "push github ${branch}"
+	done
+	git checkout ${now}
+	popd &> /dev/null
+}
+
+do_action() {
+	local action="$1"
+        local name
+
+        for name in ${project_list}; do
+		do_${action} ${name}
+        done
+}

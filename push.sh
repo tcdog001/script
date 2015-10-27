@@ -1,10 +1,9 @@
 #!/bin/bash
 
+. script.in
 
 main() {
-	name="$1"
-
-
+	do_action push 
 }
 
 main "$@"
