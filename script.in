@@ -1,7 +1,7 @@
 #!/bin/bash
 
 local_git_server=$(cat local.ip)
-project_list=$(project.list)
+project_list=$(cat project.list)
 dir_base=$(pwd)/..
 
 dir_project() {
@@ -28,6 +28,7 @@ do_pull() {
 		git pull
 		popd &> /dev/null
 	fi
+	echo
 }
 
 get_branchs() {
@@ -45,6 +46,8 @@ do_push() {
 	pushd $(dir_project ${name}) &> /dev/null
 	now=$(get_now_branch)
 	branchs=$(get_branchs)
+	echo "get ${name} branchs:${branchs}"
+
 	for branch in ${branchs}; do
 		git checkout ${branch}
 		git push github ${branch}
