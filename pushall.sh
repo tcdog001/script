@@ -1,8 +1,15 @@
 #!/bin/bash
 
 main() {
-        for name in ${project_list}; do
-                push.sh ${name} &
+	local sync="$1"
+	local name
+
+	for name in $(cat project.list); do
+		if [[ "${sync}"=="async" ]]; then
+                	./push.sh ${name} &
+		else
+			./push.sh ${name}
+		fi
         done
 }
 

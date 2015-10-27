@@ -3,9 +3,11 @@
 . script.in
 
 main() {
-        local name="$1"
+	local name
 
-        pull ${name}
+	for name in $(cat project.list); do
+                pull ${name} 
+        done
 }
 
 main "$@"

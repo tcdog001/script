@@ -1,7 +1,5 @@
 #!/bin/bash
 
-local_git_server=$(cat local.ip)
-project_list=$(cat project.list)
 dir_base=$(pwd)/..
 
 dir_project() {
@@ -13,9 +11,9 @@ dir_project() {
 pull() {
 	local name="$1"
 
-	if [[ ! -d "${name}" ]]; then
+	if [[ ! -d "$(dir_project ${name})" ]]; then
 		pushd ${dir_base} &> /dev/null
-		git clone git@${local_git_server}:${name}.git
+		git clone git@$(cat local.ip):${name}.git
 		popd &> /dev/null
 		echo "clone ${name}.git"
 
@@ -25,6 +23,7 @@ pull() {
 		echo "add github ${name}.git"
 	else
 		pushd $(dir_project ${name}) &> /dev/null
+		echo "pull ${name}"
 		git pull
 		popd &> /dev/null
 	fi
