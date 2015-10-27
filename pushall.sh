@@ -5,7 +5,7 @@ main() {
 	local name
 
 	for name in $(cat project.list); do
-		if [[ "${sync}"=="async" ]]; then
+		if [[ "${sync}" == "async" ]]; then
                 	./push.sh ${name} &
 		else
 			./push.sh ${name}
