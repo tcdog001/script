@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dir_base=$(pwd)/..
+local_git_server=$(cat local.ip)
 
 dir_project() {
 	local name="$1"
@@ -13,7 +14,7 @@ pull() {
 
 	if [[ ! -d "$(dir_project ${name})" ]]; then
 		pushd ${dir_base} &> /dev/null
-		git clone git@$(cat local.ip):${name}.git
+		git clone git@${local_git_server}:${name}.git
 		popd &> /dev/null
 		echo "clone ${name}.git"
 
