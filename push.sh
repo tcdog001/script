@@ -3,7 +3,9 @@
 . script.in
 
 main() {
-	do_action push 
+        local name="$1"
+
+        push ${name}
 }
 
 main "$@"

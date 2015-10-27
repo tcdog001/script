@@ -10,7 +10,7 @@ dir_project() {
 	echo ${dir_base}/${name}
 }
 
-do_pull() {
+pull() {
 	local name="$1"
 
 	if [[ ! -d "${name}" ]]; then
@@ -39,7 +39,7 @@ get_now_branch() {
 	git branch | grep '*' | awk '{print $2}'
 }
 
-do_push() {
+push() {
 	local name="$1"
 	local now branch branchs
 
@@ -57,11 +57,3 @@ do_push() {
 	popd &> /dev/null
 }
 
-do_action() {
-	local action="$1"
-        local name
-
-        for name in ${project_list}; do
-		do_${action} ${name}
-        done
-}

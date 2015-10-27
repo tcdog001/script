@@ -3,7 +3,9 @@
 . script.in
 
 main() {
-	do_action pull
+        local name="$1"
+
+        pull ${name}
 }
 
 main "$@"
