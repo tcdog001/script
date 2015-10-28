@@ -16,15 +16,15 @@ pull() {
 		pushd ${dir_base} &> /dev/null
 		git clone git@${local_git_server}:${name}.git
 		popd &> /dev/null
-		echo "clone ${name}.git"
+		echo "OK project:${name} clone."
 
 		pushd $(dir_project ${name}) &> /dev/null
 		git remote add github https://tcdog001:zhonggong4SB@github.com/tcdog001/${name}
 		popd &> /dev/null
-		echo "add github ${name}.git"
+		echo "OK project ${name} add to github."
 	else
 		pushd $(dir_project ${name}) &> /dev/null
-		echo "pull ${name}"
+		echo "OK project ${name} pull."
 		git pull
 		popd &> /dev/null
 	fi
@@ -46,14 +46,15 @@ push() {
 	pushd $(dir_project ${name}) &> /dev/null
 	now=$(get_now_branch)
 	branchs=$(get_branchs)
-	echo "get ${name} branchs:${branchs}"
+	echo "OK get project:${name} branch list:${branchs}."
 
 	for branch in ${branchs}; do
 		git checkout ${branch}
 		git push github ${branch}
-		echo "push github ${branch}"
+		echo "OK project:${name} branch:${branch} push to github."
 	done
 	git checkout ${now}
 	popd &> /dev/null
+	echo
 }
 
