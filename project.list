@@ -7,10 +7,6 @@ sms
 ums
 cloud_scripts
 
-lsdk_ar9531
-ngrok
-share
-
 project_tools
 rootfs_data
 website
@@ -30,3 +26,8 @@ autelan_v2
 custom_v2
 ap_project_v2
 ptest_v2
+
+ngrok
+share
+lsdk_ar9531
+
