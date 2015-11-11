@@ -1,8 +1,15 @@
+LMS
+LMS_NEW
+LTE_Security
 asdf
 radgo
 sms
 ums
 cloud_scripts
+
+lsdk_ar9531
+ngrok
+share
 
 project_tools
 rootfs_data
@@ -14,6 +21,7 @@ autelan_scripts
 release
 custom
 trunk_project
+ptest
 
 sdk_changes_v2
 autelan_scripts_v2
@@ -21,3 +29,4 @@ release_v2
 autelan_v2
 custom_v2
 ap_project_v2
+ptest_v2
