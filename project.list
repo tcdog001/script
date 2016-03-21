@@ -1,12 +1,3 @@
-LMS
-LMS_NEW
-LTE_Security
-asdf
-radgo
-sms
-ums
-cloud_scripts
-
 project_tools
 rootfs_data
 website
@@ -24,10 +15,10 @@ autelan_scripts_v2
 release_v2
 autelan_v2
 custom_v2
-ap_project_v2
+ap_project
 ptest_v2
 
 ngrok
 share
 lsdk_ar9531
-
+ap_project_v2
